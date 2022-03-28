@@ -1,0 +1,20 @@
+select t.id,t.travel_card_id,t.entry_station_id,t.entry_time,t.exit_station_id,t.exit_time
+,t.amount
+from travel_payment t inner join travel_card  c on t.travel_card_id=c.id 
+where c.person_name='Han Sai Por' or c.person_name='Michael'
+
+
+select r.id,r.route_name,t.id,t.travel_card_id ,t.entry_station_id, t.entry_time
+,t.exit_station_id ,t.exit_time ,t.amount from route r join station_route s on r.id =s.route_id
+join station st on st.id=s.station_id join travel_payment t
+on t.entry_station_id=st.id order by route_name
+
+
+----function i asses
+
+select concat(concat(concat(concat(person_name,'-'),contact_number),'-'),balance) 
+as person_details
+from travel_card order by person_name
+
+select lpad(route_name,20,'*') as updated_route_name
+from route order by route_name
